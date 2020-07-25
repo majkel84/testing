@@ -455,3 +455,4 @@ SCENARIO("counting score for single spare case"){
         }
     }
 }
+
