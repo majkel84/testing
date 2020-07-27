@@ -1,0 +1,50 @@
+Podstawa kontener do przechowywania punktów.
+Moja propozycja, inspiracja od mtalma
+std::vector<pair<int, int>> score {}
+
+metoda licząca punkty
+
+int countScore(std::vector<pair<int, int>> score)
+    zastanawiam się nad typem zwracanym size_t
+
+Zadania do realizacji:
+1. Zliczanie punktów int countScore(std::vector<pair<int, int>> score):
+pomysł Łukasza na realizację zadania w metodologii TDD test (np. gameOfAllMisses) - commit, rozwiązanie przechodzące testy commit
+pomysł na kolejność zadań (musi być zachowana)
+1.1 "game of all misess"
+1.2 "game of all ones"
+1.3 "game without spare and strike"
+1.4 "game with strike in the middle"
+1.5 "game with spare int the middle"
+1.6 "game of strike at the end"
+1.7 "game of spare at the end"
+
+z testów liczących size vector musimy zrezygnować, bo mamy też podliczać punkty częściowe
+
+2. Liczenie punktół całościowych
+    tutaj sprawdzamy już size vectora
+
+3. walidacja inputu bool validateInput(................)
+    tego punktu nie rozumiem, any ideas?
+
+4. Input z pliku
+    4.1 input z jednego pliku   std::vector<pair<int, int>> readFile(std::string pathName)
+        4.1.1 input z jednego pliku o określonej nazwie
+        4.1.2 input z jednego pliku o rozszerzeniu *.txt
+        4.1.3 input z jednego pliku z określonego katalogu
+    4.2 input z wielu plików w katalogu i łączenie tego w std::vector<vector<pair<int, int>>>
+        4.2.1 ścieżka do katalogu w argumencie metody czytającej 
+        4.2.2 ścieżka do katalogu w argumencie main
+
+5. Wyświetlanie wyniku  void showScore(std::vector<pair<int, int>> score)
+    5.1 wyświetlanie wyniku dla jednego wektora dla niepełnej ilości
+    5.2 wyświetlanie wyniku w postaci ramki z uzupełnieniem jeszcze nie wykonanych rzutów np |. .|
+    5.3 void showFullScore (wołająca showScore w pętli z it do size vector of vector)
+
+6. Zapis wyniku do pliku void saveScoreToFile(.....) - będzie potrzebne przeciążanie metody zależnie od argumentów przekazanych do main
+    6.1 Zapis dla jednego wektora std::vector<pair<int, int>>
+    6.2 Zapis dla wielu torów vector<vector<pair<int, int>>>
+    6.3 fileName pobierany jako opcja z main, jeżeli brak wołane showFullScore
+
+7. parametry -h -help dla main.cpp
+    7.1 stworzenie dokumentacji help dla programu
