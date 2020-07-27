@@ -3,21 +3,23 @@ Moja propozycja, inspiracja od mtalma
 std::vector<pair<int, int>> score {}
 
 metoda licząca punkty
-
 int countScore(std::vector<pair<int, int>> score)
     zastanawiam się nad typem zwracanym size_t
 
-Zadania do realizacji:
+
+
+Zadania do realizacji (puntky 1 do 7 można realizować niezależnie, podpnkty trzeba ogarnąć już w opisanej kolejności):
+
 1. Zliczanie punktów int countScore(std::vector<pair<int, int>> score):
 pomysł Łukasza na realizację zadania w metodologii TDD test (np. gameOfAllMisses) - commit, rozwiązanie przechodzące testy commit
 pomysł na kolejność zadań (musi być zachowana)
-1.1 "game of all misess"
-1.2 "game of all ones"
-1.3 "game without spare and strike"
-1.4 "game with strike in the middle"
-1.5 "game with spare int the middle"
-1.6 "game of strike at the end"
-1.7 "game of spare at the end"
+    1.1 "game of all misess"
+    1.2 "game of all ones"
+    1.3 "game without spare and strike"
+    1.4 "game with strike in the middle"
+    1.5 "game with spare int the middle"
+    1.6 "game of strike at the end"
+    1.7 "game of spare at the end"
 
 z testów liczących size vector musimy zrezygnować, bo mamy też podliczać punkty częściowe
 
