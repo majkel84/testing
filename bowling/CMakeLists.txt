@@ -8,11 +8,18 @@ set(FLAGS -Wall -Wextra -Werror -Wconversion -pedantic)
 #################################################################
 # Bowling's source files
 set(SOURCES
-    game.cpp)
+    bowlingLane.cpp
+    file.cpp
+    game.cpp
+    player.cpp
+    validator.cpp)
 
 # Tests' source files
 set(TEST_SOURCES
-    game-ut.cpp)
+    bowlingLane-ut.cpp
+    file-ut.cpp
+    game-ut.cpp
+    player-ut.cpp)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
