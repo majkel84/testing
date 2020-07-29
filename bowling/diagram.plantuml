@@ -1,0 +1,56 @@
+@startuml Bowling
+
+class Player{
+    + Player(std::string name;)
+    + string getName();
+    + int getScore();
+    + void setScore(int score);
+    - string name_;
+    - int score_;
+}
+
+enum gameStatus{
+    NoGame
+    InProgress
+    Finish
+}
+
+class BowlingLane{
+    + void showResults();
+    + BowlingLane(File file);
+    - gameStatus status_;
+    - string name_;
+    -std::vector<std::unique_ptr<Player>> players_;
+    - void printResultsToScreen();
+    - void printResultsToFile();
+    -std::unique_ptr<File> file_;
+}
+
+class File{
+    - string fileName_;
+    + File(std::string filename);
+    + void readFile();
+    + void saveFile();
+}
+
+interface Validator{
+    + virtual void validate() = 0;
+    + virtual ~Validator();
+}
+
+class Game{
+    + Game();
+    -std::vector<std::unique_ptr<BowlingLane>> bowlingLanes_;
+    - void printMenu();
+    - void printHelp();
+    - showResults();
+    + void startGame();
+}
+
+Validator <|-- File
+BowlingLane *-- Player
+BowlingLane *-- File
+BowlingLane +-- gameStatus
+Game *-- BowlingLane
+
+@enduml
