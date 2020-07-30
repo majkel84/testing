@@ -23,3 +23,20 @@ TEST_F(TestPlayer, checkScoreGameOfAllOnes) {
     player.countScore(score);
     ASSERT_EQ(player.getScore(), 20);
 }
+
+TEST_F(TestPlayer, checkScoreGameWithoutSpareAndStrike) {
+    score = {
+        {1, 5},
+        {2, 5},
+        {4, 5},
+        {1, 3},
+        {9, 0},
+        {5, 4},
+        {4, 4},
+        {1, 5},
+        {0, 5},
+        {0, 9}
+    };
+    player.countScore(score);
+    ASSERT_EQ(player.getScore(), 72);
+}
