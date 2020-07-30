@@ -9,3 +9,7 @@ struct TestPlayer : public ::testing::Test {
 TEST_F(TestPlayer, checkScoreGameOfAllMisses) {
     ASSERT_EQ(player.getScore(), 0);
 }
+
+TEST_F(TestPlayer, checkScoreGameOfAllOnes) {
+    ASSERT_EQ(player.getScore(), 20);
+}
