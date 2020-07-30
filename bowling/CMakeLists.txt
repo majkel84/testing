@@ -16,7 +16,6 @@ set(SOURCES
 
 # Tests' source files
 set(TEST_SOURCES
-    main-ut.cpp
     bowlingLane-ut.cpp
     file-ut.cpp
     game-ut.cpp
