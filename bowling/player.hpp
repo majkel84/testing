@@ -11,4 +11,3 @@ public:
 private:
     int score_;
 };
-};
