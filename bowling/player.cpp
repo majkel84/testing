@@ -8,11 +8,25 @@ void Player::setScore(int score) {
     score_ = score;
 }
 
-int Player::countScore(std::vector<std::pair<int, int>> score) {
+void Player::countScore(std::vector<std::pair<int, int>> score) {
     int result = 0;
-    for (const auto& it : score) {
-        result += it.first;
-        result += it.second;
+
+    for (int i = 0; i <= 9; i++) {
+        if (score[i].first == 10) {
+            if (score[i + 1].first == 10) {
+                result += (score[i].first + score[i + 1].first + score[i + 2].first);
+            } else {
+                result += (score[i].first + score[i + 1].first + score[i + 1].second);
+            }
+            continue;
+        }
+
+        if ((score[i].first + score[i].second == 10) && (score[i].first != 10)) {
+            result += (score[i].first + score[i].second + score[i + 1].first);
+            continue;
+        }
+
+        result += (score[i].first + score[i].second);
     }
     Player::setScore(result);
 }
