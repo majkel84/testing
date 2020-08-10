@@ -3,6 +3,7 @@
 #include <string>
 
 class File {
+public:
     File(std::string fileName);
     void saveFile();
 private:
