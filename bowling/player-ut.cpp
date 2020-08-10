@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <vector>
 
 #include <vector>
 
@@ -7,7 +6,7 @@
 
 struct TestPlayer : public ::testing::Test {
     Player player;
-    std::vector<std::pair<int, int>> score{};
+    std::vector<std::pair<int, int>> score {};
 };
 
 TEST_F(TestPlayer, checkScoreGameOfAllMisses) {
