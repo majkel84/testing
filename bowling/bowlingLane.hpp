@@ -14,6 +14,9 @@ enum class gameStatus {
 };
 
 class BowlingLane {
+public:
+    BowlingLane(File file);
+
 private:
     gameStatus status_;
     std::string name_;
