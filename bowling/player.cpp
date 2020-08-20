@@ -10,8 +10,9 @@ void Player::setScore(int score) {
 
 void Player::countScore(std::vector<std::pair<int, int>> score) {
     int result = 0;
+    int lastNormalRound = 9;
 
-    for (int i = 0; i <= 9; i++) {
+    for (int i = 0; i <= lastNormalRound; i++) {
         if (score[i].first == 10) {
             if (score[i + 1].first == 10) {
                 result += (score[i].first + score[i + 1].first + score[i + 2].first);
