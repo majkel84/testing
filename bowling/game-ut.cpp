@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "game.hpp"
 #include <vector>
+
+#include "game.hpp"
 
 struct TestGame : public ::testing::Test {
     Game game;

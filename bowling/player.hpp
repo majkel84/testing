@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
+#include "game.hpp"
+
 class Player {
 public:
     int getScore() const;

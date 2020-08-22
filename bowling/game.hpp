@@ -1,12 +1,17 @@
 #pragma once
 #include <vector>
 
+constexpr int lastNormalRound = 9;
+
 class Game {
 public:
-    void checkGameProgress(std::vector<std::pair<int, int>> score);
+    void checkGameProgress(const std::vector<std::pair<int, int>>& score);
     bool getIsFinished() const;
     static void printHelp();
 
 private:
     bool isFinished_;
+    bool checkEndConditionFor10Turns(const std::vector<std::pair<int, int>>& score);
+    bool checkEndConditionFor11Turns(const std::vector<std::pair<int, int>>& score);
+    bool checkEndConditionFor12Turns(const std::vector<std::pair<int, int>>& score);
 };
