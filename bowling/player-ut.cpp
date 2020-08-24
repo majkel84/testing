@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <vector>
 
 #include <vector>
 
@@ -7,7 +6,7 @@
 
 struct TestPlayer : public ::testing::Test {
     Player player;
-    std::vector<std::pair<int, int>> score{};
+    std::vector<std::pair<int, int>> score {};
 };
 
 TEST_F(TestPlayer, checkScoreGameOfAllMisses) {
@@ -115,4 +114,10 @@ TEST_F(TestPlayer, checkScoreGameWithMixedStrikesAndSpares) {
     score = {{5, 5}, {10, 0}, {5, 5}, {10, 0}, {5, 5}, {10, 0}, {5, 5}, {10, 0}, {5, 5}, {10, 0}, {5, 5}};
     player.countScore(score);
     ASSERT_EQ(player.getScore(), 200);
+}
+
+TEST_F(TestPlayer, checkScoreWithMixedGame) {
+    score = {{10, 0}, {7, 3}, {9, 0}, {10, 0}, {0, 8}, {8, 2}, {0, 6}, {10, 0}, {10, 0}, {10, 0}, {8, 1}};
+    player.countScore(score);
+    ASSERT_EQ(player.getScore(), 167);
 }
