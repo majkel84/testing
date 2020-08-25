@@ -1,6 +1,7 @@
 #include "player.hpp"
 
 #include <iomanip>
+#include <iterator>
 #include <sstream>
 
 Player::Player() {}
@@ -50,15 +51,27 @@ void Player::setPoints(std::vector<std::pair<int, int> > points) {
     points_ = points;
 }
 
-std::string Player::getInfo() const {
+std::string Player::getInfo() {
     auto ss = std::stringstream{};
     ss << std::left << std::setw(10) << "Name: " << getName()
-       << std::left << std::setw(5) << "\nPoints:\n" << "xxx"
+       << std::left << std::setw(5) << "\nPoints:\n" << translateVectorToString()
        << std::left << std::setw(5) << "\nScore: " << getScore() << '\n';
     return ss.str();
 }
 
 std::string Player::translateVectorToString() {
-    std::string stringPoints;
+    std::string stringPoints = "|";
+    for (const auto& it : points_) {
+        if (it.first == 10) {
+            stringPoints += "X|";
+        }
+        if (it.first + it.second == 10) {
+            stringPoints += it.first;
+            stringPoints += "-|";
+        }
+        stringPoints += it.first;
+        stringPoints += it.second;
+        stringPoints += "|";
+    }
     return stringPoints;
 }
