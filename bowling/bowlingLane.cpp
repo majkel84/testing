@@ -19,6 +19,6 @@ void BowlingLane::showResult() {
 
 void BowlingLane::printResultToScreen() {
     for (const auto& it : players_) {
-        std::cout << it->getScore();
+        std::cout << it->getInfo();
     }
 }

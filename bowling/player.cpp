@@ -1,5 +1,6 @@
 #include "player.hpp"
 
+#include <iomanip>
 #include <sstream>
 
 Player::Player() {}
@@ -51,6 +52,8 @@ void Player::setPoints(std::vector<std::pair<int, int> > points) {
 
 std::string Player::getInfo() {
     auto ss = std::stringstream{};
-
+    ss << std::left << std::setw(10) << "Name: " << getName()
+       << std::left << std::setw(5) << "\nPoints:\n" << "xxx"
+       << std::left << std::setw(5) << "\nScore: " << getScore() << '\n';
     return ss.str();
 }
