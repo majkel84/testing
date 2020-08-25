@@ -16,6 +16,8 @@ enum class gameStatus {
 class BowlingLane {
 public:
     BowlingLane(File file);
+    void showResult();
+    void printResultToScreen();
 
 private:
     gameStatus status_;
