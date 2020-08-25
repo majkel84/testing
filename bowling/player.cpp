@@ -1,5 +1,9 @@
 #include "player.hpp"
 
+std::string Player::getName() const {
+    return name_;
+}
+
 int Player::getScore() const {
     return score_;
 }
