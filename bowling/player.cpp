@@ -1,5 +1,12 @@
 #include "player.hpp"
 
+Player::Player() {}
+
+Player::Player(std::string name, std::vector<std::pair<int, int>> points)
+    : name_(name),
+      points_(points)
+{}
+
 std::string Player::getName() const {
     return name_;
 }
@@ -34,4 +41,8 @@ void Player::countScore(std::vector<std::pair<int, int>> score) {
         result += (score[i].first + score[i].second);
     }
     Player::setScore(result);
+}
+
+void Player::setPoints(std::vector<std::pair<int, int> > points) {
+    points_ = points;
 }
