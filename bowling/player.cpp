@@ -1,5 +1,7 @@
 #include "player.hpp"
 
+#include <sstream>
+
 Player::Player() {}
 
 Player::Player(std::string name, std::vector<std::pair<int, int>> points)
@@ -45,4 +47,10 @@ void Player::countScore(std::vector<std::pair<int, int>> score) {
 
 void Player::setPoints(std::vector<std::pair<int, int> > points) {
     points_ = points;
+}
+
+std::string Player::getInfo() {
+    auto ss = std::stringstream{};
+
+    return ss.str();
 }
