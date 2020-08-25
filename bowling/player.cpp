@@ -50,10 +50,15 @@ void Player::setPoints(std::vector<std::pair<int, int> > points) {
     points_ = points;
 }
 
-std::string Player::getInfo() {
+std::string Player::getInfo() const {
     auto ss = std::stringstream{};
     ss << std::left << std::setw(10) << "Name: " << getName()
        << std::left << std::setw(5) << "\nPoints:\n" << "xxx"
        << std::left << std::setw(5) << "\nScore: " << getScore() << '\n';
     return ss.str();
+}
+
+std::string Player::translateVectorToString() {
+    std::string stringPoints;
+    return stringPoints;
 }
