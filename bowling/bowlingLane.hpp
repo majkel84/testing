@@ -18,7 +18,8 @@ public:
     BowlingLane(File file);
     void setPlayer();
     void showResult();
-    gameStatus checkGameStatus();
+    void checkGameStatus();
+    std::string convertEnumToString();
     void printResultToScreen();
 
 private:

@@ -17,18 +17,28 @@ void BowlingLane::showResult() {
     BowlingLane::printResultToScreen();
 }
 
-gameStatus BowlingLane::checkGameStatus() {
+void BowlingLane::checkGameStatus() {
     if (players_.empty()) {
-        return gameStatus::NoGame;
+        status_ = gameStatus::NoGame;
     }
     else if (players_.at(0)->getPointsSize() ==10
             && players_.at(0)->getPointsElem(9) != 10) {
-        return gameStatus::Finish;
+        status_ = gameStatus::Finish;
     }
     else if (players_.at(0)->getPointsSize() ==11 && players_.at(0)->getPointsElem(9) != 10) {
-        return gameStatus::Finish;
+        status_ = gameStatus::Finish;
     }
-    return gameStatus::InProgress;
+    status_ = gameStatus::InProgress;
+}
+
+std::string BowlingLane::convertEnumToString() {
+    if (status_ == gameStatus::Finish) {
+        return "Finished";
+    }
+    else if (status_ == gameStatus::InProgress) {
+        return "In Progress";
+    }
+    return "No game";
 }
 
 void BowlingLane::printResultToScreen() {
