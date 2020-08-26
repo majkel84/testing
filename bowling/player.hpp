@@ -13,6 +13,8 @@ public:
     void setScore(int score);
     void countScore(std::vector<std::pair<int, int>> score);
     void setPoints(std::vector<std::pair<int, int>> points);
+    int getPointsSize();
+    int getPointsLastElem();
     std::string getInfo();
     std::string translateVectorToString();
 

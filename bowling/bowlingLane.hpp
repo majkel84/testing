@@ -18,6 +18,7 @@ public:
     BowlingLane(File file);
     void setPlayer();
     void showResult();
+    gameStatus checkGameStatus();
     void printResultToScreen();
 
 private:

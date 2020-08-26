@@ -51,6 +51,16 @@ void Player::setPoints(std::vector<std::pair<int, int> > points) {
     points_ = points;
 }
 
+int Player::getPointsSize() {
+    return points_.size();
+}
+
+int Player::getPointsLastElem() {
+    return points_.back().second
+            ? points_.back().second
+            : points_.back().first;
+}
+
 std::string Player::getInfo() {
     auto ss = std::stringstream{};
     ss << std::left << std::setw(10) << "Name: " << getName()

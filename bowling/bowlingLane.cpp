@@ -17,6 +17,14 @@ void BowlingLane::showResult() {
     BowlingLane::printResultToScreen();
 }
 
+gameStatus BowlingLane::checkGameStatus() {
+    gameStatus gs;
+    /*if (players_.at(0)->points_.size() ==10); {
+
+    }*/
+    return gs;
+}
+
 void BowlingLane::printResultToScreen() {
     for (const auto& it : players_) {
         std::cout << it->getInfo();
