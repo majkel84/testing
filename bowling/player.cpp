@@ -55,10 +55,8 @@ int Player::getPointsSize() {
     return points_.size();
 }
 
-int Player::getPointsLastElem() {
-    return points_.back().second
-            ? points_.back().second
-            : points_.back().first;
+int Player::getPointsElem(int elem) {
+    return points_.at(elem).first;
 }
 
 std::string Player::getInfo() {

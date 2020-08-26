@@ -18,11 +18,17 @@ void BowlingLane::showResult() {
 }
 
 gameStatus BowlingLane::checkGameStatus() {
-    gameStatus gs;
-    /*if (players_.at(0)->points_.size() ==10); {
-
-    }*/
-    return gs;
+    if (players_.empty()) {
+        return gameStatus::NoGame;
+    }
+    else if (players_.at(0)->getPointsSize() ==10
+            && players_.at(0)->getPointsElem(9) != 10) {
+        return gameStatus::Finish;
+    }
+    else if (players_.at(0)->getPointsSize() ==11 && players_.at(0)->getPointsElem(9) != 10) {
+        return gameStatus::Finish;
+    }
+    return gameStatus::InProgress;
 }
 
 void BowlingLane::printResultToScreen() {
