@@ -60,18 +60,20 @@ std::string Player::getInfo() {
 }
 
 std::string Player::translateVectorToString() {
-    std::string stringPoints = "|";
+    std::string stringPoints = name_ + ": ";
     for (const auto& it : points_) {
         if (it.first == 10) {
             stringPoints += "X|";
         }
-        if (it.first + it.second == 10) {
+        else if (it.first + it.second == 10) {
             stringPoints += it.first;
             stringPoints += "-|";
         }
-        stringPoints += it.first;
-        stringPoints += it.second;
-        stringPoints += "|";
+        else if (it.first + it.second < 10) {
+            stringPoints += it.first;
+            stringPoints += it.second;
+            stringPoints += "|";
+        }
     }
     return stringPoints;
 }
