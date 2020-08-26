@@ -42,6 +42,7 @@ std::string BowlingLane::convertEnumToString() {
 }
 
 void BowlingLane::printResultToScreen() {
+    std::cout << convertEnumToString();
     for (const auto& it : players_) {
         std::cout << it->getInfo();
     }
