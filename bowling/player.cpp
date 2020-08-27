@@ -51,6 +51,14 @@ void Player::setPoints(std::vector<std::pair<int, int> > points) {
     points_ = points;
 }
 
+int Player::getPointsSize() {
+    return points_.size();
+}
+
+int Player::getPointsElem(int elem) {
+    return points_.at(elem).first;
+}
+
 std::string Player::getInfo() {
     auto ss = std::stringstream{};
     ss << std::left << std::setw(10) << "Name: " << getName()
@@ -60,18 +68,20 @@ std::string Player::getInfo() {
 }
 
 std::string Player::translateVectorToString() {
-    std::string stringPoints = "|";
+    std::string stringPoints = name_ + ": ";
     for (const auto& it : points_) {
         if (it.first == 10) {
             stringPoints += "X|";
         }
-        if (it.first + it.second == 10) {
+        else if (it.first + it.second == 10) {
             stringPoints += it.first;
             stringPoints += "-|";
         }
-        stringPoints += it.first;
-        stringPoints += it.second;
-        stringPoints += "|";
+        else if (it.first + it.second < 10) {
+            stringPoints += it.first;
+            stringPoints += it.second;
+            stringPoints += "|";
+        }
     }
     return stringPoints;
 }
