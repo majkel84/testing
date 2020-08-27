@@ -3,13 +3,15 @@
 #include <memory>
 #include <iostream>
 
+BowlingLane::BowlingLane() {}
+
 BowlingLane::BowlingLane(File file) {
     file = File(name_);
 }
 
-void BowlingLane::setPlayer() {
+void BowlingLane::setPlayer(std::string name, std::vector<std::pair<int, int>> points) {
     std::unique_ptr<Player> player
-            = std::make_unique<Player>("name", file_->getScores());
+            = std::make_unique<Player>(name, points);
     players_.emplace_back(std::move(player));
 }
 

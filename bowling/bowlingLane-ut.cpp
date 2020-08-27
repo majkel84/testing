@@ -6,23 +6,22 @@
 #include "file.hpp"
 
 struct TestBowlingLine : public ::testing::Test {
-    File file = File("../lane.txt");
-    BowlingLane bl = BowlingLane(file);
+    BowlingLane bl = BowlingLane();
     std::string results{};
-    std::vector<std::pair<int, int>> points {};
+    std::vector<std::pair<int, int>> points {{1, 1}, {1, 2}};
 };
 
 TEST_F(TestBowlingLine, checkIfSetPlayerAddPlayer) {
-    bl.setPlayer();
+    bl.setPlayer("player", points);
+    bl.checkGameStatus();
     results = bl.convertEnumToString();
     EXPECT_TRUE(results == "In Progress");
 }
 
 TEST_F(TestBowlingLine, checkPrintResultToScreen) {
-    std::vector<std::pair<int, int>> points = {{1, 1}, {1, 2}};
     Player p = Player("player", points);
     p.countScore(points);
-    bl.setPlayer();
+    bl.setPlayer("player", points);
     results = bl.printResultToScreen();
     EXPECT_TRUE(results == "In Progress\nplayer 5");
 }
