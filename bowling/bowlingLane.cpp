@@ -3,18 +3,21 @@
 #include <memory>
 #include <iostream>
 
+BowlingLane::BowlingLane() {}
+
 BowlingLane::BowlingLane(File file) {
     file = File(name_);
 }
 
-void BowlingLane::setPlayer() {
+void BowlingLane::setPlayer(std::string name, std::vector<std::pair<int, int>> points) {
     std::unique_ptr<Player> player
-            = std::make_unique<Player>("name", file_->getScores());
+            = std::make_unique<Player>(name, points);
     players_.emplace_back(std::move(player));
+    players_.back()->countScore(points);
 }
 
 void BowlingLane::showResult() {
-    BowlingLane::printResultToScreen();
+    std::cout << BowlingLane::printResultToScreen();
 }
 
 void BowlingLane::checkGameStatus() {
@@ -33,17 +36,18 @@ void BowlingLane::checkGameStatus() {
 
 std::string BowlingLane::convertEnumToString() {
     if (status_ == gameStatus::Finish) {
-        return "Finished";
+        return "Finished ";
     }
     else if (status_ == gameStatus::InProgress) {
-        return "In Progress";
+        return "In Progress ";
     }
-    return "No game";
+    return "No game ";
 }
 
-void BowlingLane::printResultToScreen() {
-    std::cout << convertEnumToString();
+std::string BowlingLane::printResultToScreen() {
+    std::string result = convertEnumToString();
     for (const auto& it : players_) {
-        std::cout << it->getInfo();
+        result += it->getInfo();
     }
+    return result;
 }
