@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "bowlingLane.hpp"
-#include "file.hpp"
 
 struct TestBowlingLine : public ::testing::Test {
     BowlingLane bl = BowlingLane();
@@ -15,15 +14,13 @@ TEST_F(TestBowlingLine, checkIfSetPlayerAddPlayer) {
     bl.setPlayer("player", points);
     bl.checkGameStatus();
     results = bl.convertEnumToString();
-    EXPECT_TRUE(results == "In Progress");
+    std::cout << "sssssssssssssssssss" << results;
+    EXPECT_TRUE(results == "In Progress ");
 }
 
 TEST_F(TestBowlingLine, checkPrintResultToScreen) {
-    Player p = Player("player", points);
-    p.countScore(points);
     bl.setPlayer("player", points);
     bl.checkGameStatus();
     results = bl.printResultToScreen();
-    std::cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" << results;
     EXPECT_TRUE(results == "In Progress Name: player Score: 5");
 }
