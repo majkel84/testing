@@ -1,16 +1,18 @@
 #include <gtest/gtest.h>
+#include <string>
 
 #include "bowlingLane.hpp"
+#include "file.hpp"
 
 struct TestBowlingLine : public ::testing::Test {
-    BowlingLane bl;
+    File file = File("../lane.txt");
+    BowlingLane bl = BowlingLane(file);
     std::string results{};
     std::vector<std::pair<int, int>> points {};
 };
 
-/*TEST_F(TestBowlingLine, checkIfGameInProgressIsTranslatedCorrectly) {
-    results = "15|25|45|13|";
-    score = {{1, 5}, {2, 5}, {4, 5}, {1, 3}};
-    file.translateResultsToScoreVector(results);
-    ASSERT_EQ(file.getScores(), score);
-}*/
+TEST_F(TestBowlingLine, checkIfSetPlayerAddPlayer) {
+    bl.setPlayer();
+    results = bl.convertEnumToString();
+    EXPECT_TRUE(results == "In Progress");
+}
