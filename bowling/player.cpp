@@ -61,9 +61,9 @@ int Player::getPointsElem(int elem) {
 
 std::string Player::getInfo() {
     auto ss = std::stringstream{};
-    ss << std::left << std::setw(10) << "Name: " << getName()
-       << std::left << std::setw(5) << "\nPoints:\n" << translateVectorToString()
-       << std::left << std::setw(5) << "\nScore: " << getScore() << '\n';
+    ss << "Name: " << getName()
+       //<< "Points:" << translateVectorToString()
+       << " Score: " << getScore() << '\n';
     return ss.str();
 }
 

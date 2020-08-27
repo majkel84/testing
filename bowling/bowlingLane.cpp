@@ -14,7 +14,7 @@ void BowlingLane::setPlayer() {
 }
 
 void BowlingLane::showResult() {
-    BowlingLane::printResultToScreen();
+    std::cout << BowlingLane::printResultToScreen();
 }
 
 void BowlingLane::checkGameStatus() {
@@ -41,9 +41,10 @@ std::string BowlingLane::convertEnumToString() {
     return "No game";
 }
 
-void BowlingLane::printResultToScreen() {
-    std::cout << convertEnumToString();
+std::string BowlingLane::printResultToScreen() {
+    std::string result = convertEnumToString() +'\n';
     for (const auto& it : players_) {
-        std::cout << it->getInfo();
+        result += it->getInfo();
     }
+    return result;
 }

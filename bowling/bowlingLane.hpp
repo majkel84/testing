@@ -20,7 +20,7 @@ public:
     void showResult();
     void checkGameStatus();
     std::string convertEnumToString();
-    void printResultToScreen();
+    std::string printResultToScreen();
 
 private:
     gameStatus status_;
