@@ -22,6 +22,8 @@ TEST_F(TestBowlingLine, checkPrintResultToScreen) {
     Player p = Player("player", points);
     p.countScore(points);
     bl.setPlayer("player", points);
+    bl.checkGameStatus();
     results = bl.printResultToScreen();
-    EXPECT_TRUE(results == "In Progress\nplayer 5");
+    std::cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" << results;
+    EXPECT_TRUE(results == "In Progress Name: player Score: 5");
 }

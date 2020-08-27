@@ -1,6 +1,7 @@
 #include "player.hpp"
 
 #include <iomanip>
+#include <iostream>
 #include <iterator>
 #include <sstream>
 
@@ -23,26 +24,23 @@ void Player::setScore(int score) {
     score_ = score;
 }
 
-void Player::countScore(std::vector<std::pair<int, int>> score) {
+void Player::countScore(std::vector<std::pair<int, int>> points) {
     int result = 0;
-    int lastNormalRound = 9;
+    int lastNormalRound = 9 < points.size() ? 9 : points.size();
 
-    for (int i = 0; i <= lastNormalRound; i++) {
-        if (score[i].first == 10) {
-            if (score[i + 1].first == 10) {
-                result += (score[i].first + score[i + 1].first + score[i + 2].first);
-            } else {
-                result += (score[i].first + score[i + 1].first + score[i + 1].second);
-            }
-            continue;
+    for (auto it = 0; it <= lastNormalRound; it++) {
+        if (points[it].first == 10 && points[it + 1].first == 10 && points.size() > it + 2) {
+            result += (points[it].first + 10 + points[it + 2].first);
         }
-
-        if ((score[i].first + score[i].second == 10) && (score[i].first != 10)) {
-            result += (score[i].first + score[i].second + score[i + 1].first);
-            continue;
+        else if (points[it].first == 10 && points[it + 1].first < 10 && points.size() > it + 1) {
+            result += (points[it].first + points[it + 1].first + points[it + 1].second);
         }
-
-        result += (score[i].first + score[i].second);
+        else if (points[it].first + points[it].second == 10 && points.size() > it + 1) {
+            result += (points[it].first + points[it].second + points[it + 1].first);
+        }
+        else if (points[it].first + points[it].second < 10) {
+            result += (points[it].first + points[it].second);
+        }
     }
     Player::setScore(result);
 }
@@ -62,8 +60,7 @@ int Player::getPointsElem(int elem) {
 std::string Player::getInfo() {
     auto ss = std::stringstream{};
     ss << "Name: " << getName()
-       //<< "Points:" << translateVectorToString()
-       << " Score: " << getScore() << '\n';
+       << " Score: " << getScore();
     return ss.str();
 }
 

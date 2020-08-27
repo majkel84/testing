@@ -13,6 +13,7 @@ void BowlingLane::setPlayer(std::string name, std::vector<std::pair<int, int>> p
     std::unique_ptr<Player> player
             = std::make_unique<Player>(name, points);
     players_.emplace_back(std::move(player));
+    players_.back()->countScore(points);
 }
 
 void BowlingLane::showResult() {
@@ -35,16 +36,16 @@ void BowlingLane::checkGameStatus() {
 
 std::string BowlingLane::convertEnumToString() {
     if (status_ == gameStatus::Finish) {
-        return "Finished";
+        return "Finished ";
     }
     else if (status_ == gameStatus::InProgress) {
-        return "In Progress";
+        return "In Progress ";
     }
-    return "No game";
+    return "No game ";
 }
 
 std::string BowlingLane::printResultToScreen() {
-    std::string result = convertEnumToString() +'\n';
+    std::string result = convertEnumToString();
     for (const auto& it : players_) {
         result += it->getInfo();
     }
