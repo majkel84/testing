@@ -4,19 +4,17 @@
 #include <fstream>
 #include <iostream>
 #include <iterator>
+#include <map>
+#include <regex>
 #include <sstream>
 
 File::File(std::string fileName) : fileName_(fileName) {}
 
-std::vector<std::pair<int, int>> File::getScores() const {
-    return score_;
+std::map<std::string, std::vector<std::pair<int, int>>> File::getPlayerResults() const {
+    return playerResults_;
 }
 
-std::string File::getResults() const {
-    return results_;
-}
-
-void File::splitString(const std::string& str, std::vector<std::string>& vec) {
+void File::splitString(const std::string& str, std::vector<std::string>& vec, char delimiter) {
     std::stringstream ss(str);
     std::string token;
     while (std::getline(ss, token, delimiter)) {
@@ -24,22 +22,34 @@ void File::splitString(const std::string& str, std::vector<std::string>& vec) {
     }
 }
 
-void File::translateResultsToScoreVector(std::string results) {
+void File::divideResultsIntoPlayers(const std::vector<std::string>& line) {
+    std::vector<std::string> temp{};
+    std::vector<std::pair<int, int>> scoreVector;
+    for (auto singlePlayerResults : line) {
+        temp.clear();
+        this->splitString(singlePlayerResults, temp, ':');
+        scoreVector = this->translateResultsToScoreVector(temp[1]);
+        playerResults_[temp[0]] = scoreVector;
+    }
+}
+
+std::vector<std::pair<int, int>> File::translateResultsToScoreVector(const std::string& results) {
     std::vector<std::string> results_divided;
     std::vector<int> temp{};
+    std::vector<std::pair<int, int>> score;
 
-    this->splitString(results, results_divided);
+    this->splitString(results, results_divided, '|');
 
     for (auto elem : results_divided) {
         if (elem.empty()) {
             continue;
         } else if (elem == "X") {
-            this->score_.push_back(std::make_pair(10, 0));
+            score.push_back(std::make_pair(10, 0));
         } else if (elem == "XX") {
-            this->score_.push_back(std::make_pair(10, 0));
-            this->score_.push_back(std::make_pair(10, 0));
+            score.push_back(std::make_pair(10, 0));
+            score.push_back(std::make_pair(10, 0));
         } else if (elem == "--") {
-            this->score_.push_back(std::make_pair(0, 0));
+            score.push_back(std::make_pair(0, 0));
         } else {
             for (int i = 0; i < 2; i++) {
                 if (elem[i] == '-') {
@@ -52,22 +62,27 @@ void File::translateResultsToScoreVector(std::string results) {
                     temp.push_back(0);
                 }
             }
-            this->score_.push_back(std::make_pair(temp[0], temp[1]));
+            score.push_back(std::make_pair(temp[0], temp[1]));
             temp.clear();
         }
     }
+    return score;
 }
 
 void File::readFile() {
     std::string line;
     std::ifstream lane(this->fileName_);
+    std::vector<std::string> fileContents;
     if (lane.is_open()) {
         while (getline(lane, line)) {
-            this->results_ = line;
+            fileContents.push_back(line);
         }
         lane.close();
     } else {
         std::cerr << "Could not open file ...";
+    }
+    if (!fileContents.empty()) {
+        this->divideResultsIntoPlayers(fileContents);
     }
 }
 
