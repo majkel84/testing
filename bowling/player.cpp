@@ -1,6 +1,7 @@
 #include "player.hpp"
 
 #include <iomanip>
+#include <iostream>
 #include <iterator>
 #include <sstream>
 
@@ -23,26 +24,23 @@ void Player::setScore(int score) {
     score_ = score;
 }
 
-void Player::countScore(std::vector<std::pair<int, int>> score) {
+void Player::countScore(std::vector<std::pair<int, int>> points) {
     int result = 0;
-    int lastNormalRound = 9;
+    int lastNormalRound = 9 < points.size() ? 9 : points.size();
 
-    for (int i = 0; i <= lastNormalRound; i++) {
-        if (score[i].first == 10) {
-            if (score[i + 1].first == 10) {
-                result += (score[i].first + score[i + 1].first + score[i + 2].first);
-            } else {
-                result += (score[i].first + score[i + 1].first + score[i + 1].second);
-            }
-            continue;
+    for (auto it = 0; it <= lastNormalRound; it++) {
+        if (points[it].first == 10 && points[it + 1].first == 10 && points.size() > it + 2) {
+            result += (points[it].first + 10 + points[it + 2].first);
         }
-
-        if ((score[i].first + score[i].second == 10) && (score[i].first != 10)) {
-            result += (score[i].first + score[i].second + score[i + 1].first);
-            continue;
+        else if (points[it].first == 10 && points[it + 1].first < 10 && points.size() > it + 1) {
+            result += (points[it].first + points[it + 1].first + points[it + 1].second);
         }
-
-        result += (score[i].first + score[i].second);
+        else if (points[it].first + points[it].second == 10 && points.size() > it + 1) {
+            result += (points[it].first + points[it].second + points[it + 1].first);
+        }
+        else if (points[it].first + points[it].second < 10) {
+            result += (points[it].first + points[it].second);
+        }
     }
     Player::setScore(result);
 }
@@ -51,27 +49,36 @@ void Player::setPoints(std::vector<std::pair<int, int> > points) {
     points_ = points;
 }
 
+int Player::getPointsSize() {
+    return points_.size();
+}
+
+int Player::getPointsElem(int elem) {
+    return points_.at(elem).first;
+}
+
 std::string Player::getInfo() {
     auto ss = std::stringstream{};
-    ss << std::left << std::setw(10) << "Name: " << getName()
-       << std::left << std::setw(5) << "\nPoints:\n" << translateVectorToString()
-       << std::left << std::setw(5) << "\nScore: " << getScore() << '\n';
+    ss << "Name: " << getName()
+       << " Score: " << getScore();
     return ss.str();
 }
 
 std::string Player::translateVectorToString() {
-    std::string stringPoints = "|";
+    std::string stringPoints = name_ + ": ";
     for (const auto& it : points_) {
         if (it.first == 10) {
             stringPoints += "X|";
         }
-        if (it.first + it.second == 10) {
+        else if (it.first + it.second == 10) {
             stringPoints += it.first;
             stringPoints += "-|";
         }
-        stringPoints += it.first;
-        stringPoints += it.second;
-        stringPoints += "|";
+        else if (it.first + it.second < 10) {
+            stringPoints += it.first;
+            stringPoints += it.second;
+            stringPoints += "|";
+        }
     }
     return stringPoints;
 }
