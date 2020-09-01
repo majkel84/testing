@@ -13,12 +13,7 @@ void oneParameter(const std::string& param) {
             return;
         }
     }
-    //TODO: Add input path
 }
-
-//TODO: Implement this function
-// void twoParameters(const std::string& param1, const std::string& param2) {
-// }
 
 int main(int argc, char* argv[]) {
     if (argc == 1) {
@@ -32,6 +27,5 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
     }
 
-    // twoParameters(argv[1], argv[2]);
     return EXIT_SUCCESS;
 }
