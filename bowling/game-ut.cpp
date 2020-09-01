@@ -34,8 +34,7 @@ TEST_F(TestGame, checkIfGameWithSpareAtTheEndIsNotFinished) {
 }
 
 TEST_F(TestGame, checkIfGameWithStrikesAtTheEndIsFinished) {
-    score = {{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0},
-             {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}};
+    score = {{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}};
     game.checkGameProgress(score);
     ASSERT_EQ(game.getIsFinished(), true);
 }

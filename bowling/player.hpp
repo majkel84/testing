@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
+
 #include <string>
+#include <vector>
 
 #include "game.hpp"
 
@@ -21,5 +22,5 @@ public:
 private:
     std::string name_;
     int score_;
-    std::vector<std::pair<int, int>> points_ {};
+    std::vector<std::pair<int, int>> points_{};
 };
