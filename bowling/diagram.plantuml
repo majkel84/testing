@@ -20,10 +20,10 @@ class BowlingLane{
     + BowlingLane(File file);
     - gameStatus status_;
     - string name_;
-    -std::vector<std::unique_ptr<Player>> players_;
+    - std::vector<std::unique_ptr<Player>> players_;
     - void printResultsToScreen();
     - void printResultsToFile();
-    -std::unique_ptr<File> file_;
+    - std::unique_ptr<File> file_;
 }
 
 class File{
@@ -40,7 +40,7 @@ interface Validator{
 
 class Game{
     + Game();
-    -std::vector<std::unique_ptr<BowlingLane>> bowlingLanes_;
+    - std::vector<std::unique_ptr<BowlingLane>> bowlingLanes_;
     - void printMenu();
     - void printHelp();
     - showResults();
