@@ -6,7 +6,7 @@
 
 struct TestPlayer : public ::testing::Test {
     Player player;
-    std::vector<std::pair<int, int>> score {};
+    std::vector<std::pair<int, int>> score{};
 };
 
 TEST_F(TestPlayer, checkScoreGameOfAllMisses) {
@@ -56,8 +56,7 @@ TEST_F(TestPlayer, checkScoreGameWithSpareAtTheEnd) {
 }
 
 TEST_F(TestPlayer, checkScoreGameWithAllStrikes) {
-    score = {{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0},
-             {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}};
+    score = {{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}};
     player.countScore(score);
     ASSERT_EQ(player.getScore(), 300);
 }

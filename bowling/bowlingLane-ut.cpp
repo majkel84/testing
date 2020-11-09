@@ -7,7 +7,7 @@
 struct TestBowlingLine : public ::testing::Test {
     BowlingLane bl = BowlingLane();
     std::string results{};
-    std::vector<std::pair<int, int>> points {{1, 1}, {1, 2}};
+    std::vector<std::pair<int, int>> points{{1, 1}, {1, 2}};
 };
 
 TEST_F(TestBowlingLine, checkIfSetPlayerAddPlayer) {

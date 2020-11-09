@@ -36,8 +36,7 @@ TEST_F(TestFile, checkIfGameWithSpareAtTheEndIsTranslatedCorrectly) {
 
 TEST_F(TestFile, checkIfGameOfAllStrikesIsTranslatedCorrectly) {
     results = "X|X|X|X|X|X|X|X|X|X||XX";
-    score = {{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0},
-             {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}};
+    score = {{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0}};
     std::vector<std::pair<int, int>> scoreToCheck = file.translateResultsToScoreVector(results);
     ASSERT_EQ(scoreToCheck, score);
 }

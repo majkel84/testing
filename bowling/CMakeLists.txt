@@ -11,8 +11,7 @@ set(SOURCES
     bowlingLane.cpp
     file.cpp
     game.cpp
-    player.cpp
-    validator.cpp)
+    player.cpp)
 
 # Tests' source files
 set(TEST_SOURCES

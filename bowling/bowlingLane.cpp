@@ -1,7 +1,7 @@
 #include "bowlingLane.hpp"
 
-#include <memory>
 #include <iostream>
+#include <memory>
 
 BowlingLane::BowlingLane() {}
 
@@ -10,8 +10,7 @@ BowlingLane::BowlingLane(File file) {
 }
 
 void BowlingLane::setPlayer(std::string name, std::vector<std::pair<int, int>> points) {
-    std::unique_ptr<Player> player
-            = std::make_unique<Player>(name, points);
+    std::unique_ptr<Player> player = std::make_unique<Player>(name, points);
     players_.emplace_back(std::move(player));
     players_.back()->countScore(points);
 }
@@ -23,12 +22,9 @@ void BowlingLane::showResult() {
 void BowlingLane::checkGameStatus() {
     if (players_.empty()) {
         status_ = gameStatus::NoGame;
-    }
-    else if (players_.at(0)->getPointsSize() ==10
-            && players_.at(0)->getPointsElem(9) != 10) {
+    } else if (players_.at(0)->getPointsSize() == 10 && players_.at(0)->getPointsElem(9) != 10) {
         status_ = gameStatus::Finish;
-    }
-    else if (players_.at(0)->getPointsSize() ==11 && players_.at(0)->getPointsElem(9) != 10) {
+    } else if (players_.at(0)->getPointsSize() == 11 && players_.at(0)->getPointsElem(9) != 10) {
         status_ = gameStatus::Finish;
     }
     status_ = gameStatus::InProgress;
@@ -37,8 +33,7 @@ void BowlingLane::checkGameStatus() {
 std::string BowlingLane::convertEnumToString() {
     if (status_ == gameStatus::Finish) {
         return "Finished ";
-    }
-    else if (status_ == gameStatus::InProgress) {
+    } else if (status_ == gameStatus::InProgress) {
         return "In Progress ";
     }
     return "No game ";

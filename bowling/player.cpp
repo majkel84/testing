@@ -9,8 +9,7 @@ Player::Player() {}
 
 Player::Player(std::string name, std::vector<std::pair<int, int>> points)
     : name_(name),
-      points_(points)
-{}
+      points_(points) {}
 
 std::string Player::getName() const {
     return name_;
@@ -31,21 +30,18 @@ void Player::countScore(std::vector<std::pair<int, int>> points) {
     for (auto it = 0; it <= lastNormalRound; it++) {
         if (points[it].first == 10 && points[it + 1].first == 10 && points.size() > it + 2) {
             result += (points[it].first + 10 + points[it + 2].first);
-        }
-        else if (points[it].first == 10 && points[it + 1].first < 10 && points.size() > it + 1) {
+        } else if (points[it].first == 10 && points[it + 1].first < 10 && points.size() > it + 1) {
             result += (points[it].first + points[it + 1].first + points[it + 1].second);
-        }
-        else if (points[it].first + points[it].second == 10 && points.size() > it + 1) {
+        } else if (points[it].first + points[it].second == 10 && points.size() > it + 1) {
             result += (points[it].first + points[it].second + points[it + 1].first);
-        }
-        else if (points[it].first + points[it].second < 10) {
+        } else if (points[it].first + points[it].second < 10) {
             result += (points[it].first + points[it].second);
         }
     }
     Player::setScore(result);
 }
 
-void Player::setPoints(std::vector<std::pair<int, int> > points) {
+void Player::setPoints(std::vector<std::pair<int, int>> points) {
     points_ = points;
 }
 
@@ -69,12 +65,10 @@ std::string Player::translateVectorToString() {
     for (const auto& it : points_) {
         if (it.first == 10) {
             stringPoints += "X|";
-        }
-        else if (it.first + it.second == 10) {
+        } else if (it.first + it.second == 10) {
             stringPoints += it.first;
             stringPoints += "-|";
-        }
-        else if (it.first + it.second < 10) {
+        } else if (it.first + it.second < 10) {
             stringPoints += it.first;
             stringPoints += it.second;
             stringPoints += "|";

@@ -8,7 +8,8 @@
 #include <regex>
 #include <sstream>
 
-File::File(std::string fileName) : fileName_(fileName) {}
+File::File(std::string fileName)
+    : fileName_(fileName) {}
 
 std::map<std::string, std::vector<std::pair<int, int>>> File::getPlayerResults() const {
     return playerResults_;
