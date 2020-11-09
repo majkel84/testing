@@ -12,15 +12,14 @@ struct TestBowlingLine : public ::testing::Test {
 
 TEST_F(TestBowlingLine, checkIfSetPlayerAddPlayer) {
     bl.setPlayer("player", points);
+    EXPECT_TRUE(bl.checkGameStatus());
+    
     bl.checkGameStatus();
-    results = bl.convertEnumToString();
-    std::cout << "sssssssssssssssssss" << results;
-    EXPECT_TRUE(results == "In Progress ");
+    EXPECT_EQ(bl.convertEnumToString(), "In Progress ");
 }
 
 TEST_F(TestBowlingLine, checkPrintResultToScreen) {
     bl.setPlayer("player", points);
     bl.checkGameStatus();
-    results = bl.printResultToScreen();
-    EXPECT_TRUE(results == "In Progress Name: player Score: 5");
+    EXPECT_EQ(bl.getResult(), "In Progress Name: player Score: 5");
 }

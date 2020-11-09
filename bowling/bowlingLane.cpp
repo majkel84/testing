@@ -1,5 +1,6 @@
 #include "bowlingLane.hpp"
 
+#include <algorithm>
 #include <iostream>
 #include <memory>
 
@@ -16,18 +17,25 @@ void BowlingLane::setPlayer(std::string name, std::vector<std::pair<int, int>> p
 }
 
 void BowlingLane::showResult() {
-    std::cout << BowlingLane::printResultToScreen();
+    std::cout << BowlingLane::getResult();
 }
 
-void BowlingLane::checkGameStatus() {
+bool BowlingLane::checkGameStatus() {
     if (players_.empty()) {
         status_ = gameStatus::NoGame;
-    } else if (players_.at(0)->getPointsSize() == 10 && players_.at(0)->getPointsElem(9) != 10) {
-        status_ = gameStatus::Finish;
-    } else if (players_.at(0)->getPointsSize() == 11 && players_.at(0)->getPointsElem(9) != 10) {
-        status_ = gameStatus::Finish;
+        return false;
     }
-    status_ = gameStatus::InProgress;
+    for (const auto& it: players_) {
+        if (it->getPointsSize() == 10 && it->getPointsElem(9) != 10) {
+            status_ = gameStatus::Finish;
+            return true;
+        } else if (it -> getPointsSize() == 11 && players_.at(0)->getPointsElem(9) != 10) {
+            status_ = gameStatus::Finish;
+            return true;
+        }
+        status_ = gameStatus::InProgress;
+    }
+    return true;
 }
 
 std::string BowlingLane::convertEnumToString() {
@@ -39,7 +47,7 @@ std::string BowlingLane::convertEnumToString() {
     return "No game ";
 }
 
-std::string BowlingLane::printResultToScreen() {
+std::string BowlingLane::getResult() {
     std::string result = convertEnumToString();
     for (const auto& it : players_) {
         result += it->getInfo();
