@@ -16,7 +16,6 @@ enum class gameStatus {
 class BowlingLane {
 public:
     BowlingLane(std::vector<std::unique_ptr<Player>> players);
-    BowlingLane(File file);
     void setPlayer(std::string name, std::vector<std::pair<int, int>> points);
     void printResultToScreen();
     bool checkGameStatus();

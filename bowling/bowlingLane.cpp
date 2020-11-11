@@ -9,9 +9,6 @@
 BowlingLane::BowlingLane(std::vector<std::unique_ptr<Player>> players)
     : players_(std::move(players)) {}
 
-BowlingLane::BowlingLane(File file) {
-    file = File(name_);
-}
 void BowlingLane::setPlayer(std::string name, std::vector<std::pair<int, int>> points) {
     std::unique_ptr<Player> player = std::make_unique<Player>(name, points);
     players_.emplace_back(std::move(player));
