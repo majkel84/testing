@@ -4,19 +4,21 @@
 #include <iostream>
 #include <memory>
 
-BowlingLane::BowlingLane() {}
+// BowlingLane::BowlingLane() {}
+
+BowlingLane::BowlingLane(std::vector<std::unique_ptr<Player>> players)
+    : players_(std::move(players)) {}
 
 BowlingLane::BowlingLane(File file) {
     file = File(name_);
 }
-
 void BowlingLane::setPlayer(std::string name, std::vector<std::pair<int, int>> points) {
     std::unique_ptr<Player> player = std::make_unique<Player>(name, points);
     players_.emplace_back(std::move(player));
     players_.back()->countScore(points);
 }
 
-void BowlingLane::showResult() {
+void BowlingLane::printResultToScreen() {
     std::cout << BowlingLane::getResult();
 }
 
@@ -26,16 +28,29 @@ bool BowlingLane::checkGameStatus() {
         return false;
     }
     for (const auto& it: players_) {
-        if (it->getPointsSize() == 10 && it->getPointsElem(9) != 10) {
-            status_ = gameStatus::Finish;
+        if (it->getPointsSize() < 10) {
+            status_ = gameStatus::InProgress;
             return true;
-        } else if (it -> getPointsSize() == 11 && players_.at(0)->getPointsElem(9) != 10) {
+        }
+    }
+        for (const auto& it: players_) {
+        if (it->getPointsSize() == 12) {
             status_ = gameStatus::Finish;
             return true;
         }
-        status_ = gameStatus::InProgress;
     }
-    return true;
+
+    for (auto it = 0; it < players_.size(); it++) {
+        if (players_[it]->getPointsSize() == 10 && players_[it]->getPointsElem(9) != 10) {
+            status_ = gameStatus::Finish;
+            return true;
+        } else if (players_[it] -> getPointsSize() == 11 && players_[it]->getPointsElem(9) != 10) {
+            status_ = gameStatus::Finish;
+            return true;
+        }
+    }
+    status_ = gameStatus::InProgress;
+    return false;
 }
 
 std::string BowlingLane::convertEnumToString() {
