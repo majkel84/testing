@@ -23,5 +23,5 @@ TEST_F(TestBowlingLine, checkSetPLayer) {
     BowlingLane bl(std::move(players));
     bl.setPlayer("player", points);
     bl.checkGameStatus();
-    EXPECT_EQ(bl.getResult(), "Finished Name: player Score: 30");
+    EXPECT_EQ(bl.getResult(), "Finished player 30");
 }
